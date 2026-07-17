@@ -452,10 +452,69 @@ src="https://www.facebook.com/tr?id=1437852618376703&ev=PageView&noscript=1"
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-401263629', {
+    'page_path': window.location.pathname,
     'anonymize_ip': true,
     'allow_google_signals': true,
     'allow_ad_personalization_signals': true
   });
+  // Disparar page_view explícitamente
+  gtag('event', 'page_view');
+</script>
+
+<!-- GA4 Event Tracking -->
+<script>
+(function() {
+  var GA4Module = {
+    trackEvent: function(eventName, data) {
+      if (typeof gtag === 'undefined') {
+        console.log('GA4 no disponible');
+        return;
+      }
+      gtag('event', eventName, data || {});
+      console.log('✓ GA4 evento disparado:', eventName);
+    },
+    
+    trackViewItem: function(itemName) {
+      this.trackEvent('view_item', {
+        items: [{
+          item_name: itemName,
+          item_category: 'App'
+        }]
+      });
+    },
+    
+    trackBeginCheckout: function(plan, value) {
+      this.trackEvent('begin_checkout', {
+        items: [{
+          item_name: plan,
+          price: value,
+          currency: 'USD'
+        }],
+        value: value,
+        currency: 'USD'
+      });
+    },
+    
+    trackPurchase: function(plan, value) {
+      this.trackEvent('purchase', {
+        transaction_id: 'luna_' + Date.now(),
+        value: value,
+        currency: 'USD',
+        items: [{
+          item_name: plan,
+          price: value
+        }]
+      });
+    }
+  };
+  
+  window.GA4Module = GA4Module;
+  
+  // Disparar view_item al cargar
+  document.addEventListener('DOMContentLoaded', function() {
+    GA4Module.trackViewItem('Luna Sleep Landing');
+  });
+})();
 </script>
 
 <!-- Microsoft Clarity -->
@@ -495,12 +554,9 @@ var TrackingModule = (function() {
         content_name: 'Luna Sleep Landing',
         content_type: 'product'
       });
-      gtag('event', 'view_item', {
-        items: [{
-          item_name: 'Luna Sleep',
-          item_category: 'App'
-        }]
-      });
+      if (typeof GA4Module !== 'undefined') {
+        GA4Module.trackViewItem('Luna Sleep');
+      }
       markEventFired('ViewContent');
       console.log('✓ ViewContent disparado');
     },
@@ -514,13 +570,10 @@ var TrackingModule = (function() {
         value: plan === 'Plan VIP' ? 69 : 49,
         currency: 'USD'
       });
-      gtag('event', 'begin_checkout', {
-        items: [{
-          item_name: plan,
-          price: plan === 'Plan VIP' ? 69 : 49,
-          currency: 'USD'
-        }]
-      });
+      if (typeof GA4Module !== 'undefined') {
+        var price = plan === 'Plan VIP' ? 69 : 49;
+        GA4Module.trackBeginCheckout(plan, price);
+      }
       markEventFired('InitiateCheckout_' + plan);
       console.log('✓ InitiateCheckout disparado:', plan);
     },
@@ -535,15 +588,9 @@ var TrackingModule = (function() {
         content_name: plan,
         content_type: 'product'
       });
-      gtag('event', 'purchase', {
-        transaction_id: 'luna_' + Date.now(),
-        value: value,
-        currency: 'USD',
-        items: [{
-          item_name: plan,
-          price: value
-        }]
-      });
+      if (typeof GA4Module !== 'undefined') {
+        GA4Module.trackPurchase(plan, value);
+      }
       markEventFired('Purchase_' + plan);
       console.log('✓ Purchase disparado:', plan);
     },
