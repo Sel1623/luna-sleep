@@ -427,6 +427,143 @@
 }
 	</style>
 
+<!-- ===== TRACKING CONSOLIDADO ===== -->
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1437852618376703');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1437852618376703&ev=PageView&noscript=1"
+/></noscript>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-401263629"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-401263629', {
+    'anonymize_ip': true,
+    'allow_google_signals': true,
+    'allow_ad_personalization_signals': true
+  });
+</script>
+
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "xno5gppsks");
+</script>
+
+<!-- Event Tracking Module -->
+<script>
+var TrackingModule = (function() {
+  var eventsFired = {};
+  var isReady = false;
+  
+  // Esperar a que Meta Pixel esté listo
+  window.addEventListener('load', function() {
+    isReady = true;
+  });
+  
+  function canFireEvent(eventName) {
+    return !eventsFired[eventName];
+  }
+  
+  function markEventFired(eventName) {
+    eventsFired[eventName] = true;
+  }
+  
+  return {
+    // Meta Pixel Events
+    trackViewContent: function(data) {
+      if (!canFireEvent('ViewContent')) return;
+      if (typeof fbq === 'undefined') return;
+      fbq('track', 'ViewContent', data || {
+        content_name: 'Luna Sleep Landing',
+        content_type: 'product'
+      });
+      gtag('event', 'view_item', {
+        items: [{
+          item_name: 'Luna Sleep',
+          item_category: 'App'
+        }]
+      });
+      markEventFired('ViewContent');
+      console.log('✓ ViewContent disparado');
+    },
+    
+    trackInitiateCheckout: function(plan) {
+      if (!canFireEvent('InitiateCheckout_' + plan)) return;
+      if (typeof fbq === 'undefined') return;
+      fbq('track', 'InitiateCheckout', {
+        content_name: plan,
+        content_type: 'product',
+        value: plan === 'Plan VIP' ? 69 : 49,
+        currency: 'USD'
+      });
+      gtag('event', 'begin_checkout', {
+        items: [{
+          item_name: plan,
+          price: plan === 'Plan VIP' ? 69 : 49,
+          currency: 'USD'
+        }]
+      });
+      markEventFired('InitiateCheckout_' + plan);
+      console.log('✓ InitiateCheckout disparado:', plan);
+    },
+    
+    trackPurchase: function(plan) {
+      if (!canFireEvent('Purchase_' + plan)) return;
+      if (typeof fbq === 'undefined') return;
+      var value = plan === 'Plan VIP' ? 69 : 49;
+      fbq('track', 'Purchase', {
+        value: value,
+        currency: 'USD',
+        content_name: plan,
+        content_type: 'product'
+      });
+      gtag('event', 'purchase', {
+        transaction_id: 'luna_' + Date.now(),
+        value: value,
+        currency: 'USD',
+        items: [{
+          item_name: plan,
+          price: value
+        }]
+      });
+      markEventFired('Purchase_' + plan);
+      console.log('✓ Purchase disparado:', plan);
+    },
+    
+    trackAddToCart: function(plan) {
+      if (typeof fbq === 'undefined') return;
+      fbq('track', 'AddToCart', {
+        content_name: plan,
+        value: plan === 'Plan VIP' ? 69 : 49,
+        currency: 'USD'
+      });
+    }
+  };
+})();
+
+// Disparar ViewContent al cargar
+document.addEventListener('DOMContentLoaded', function() {
+  TrackingModule.trackViewContent();
+});
+</script>
 </head>
 <body>
 
@@ -670,12 +807,12 @@
 </div>
 
 <!-- NOTIFICACIÓN PRUEBA SOCIAL -->
-<div id="social-notif">
-  <div id="social-notif-inner">
-    <div id="social-notif-icon">🌙</div>
-    <div id="social-notif-text">
-      <strong id="social-notif-name">Sofía</strong>
-      <span id="social-notif-msg">acaba de activar su Luna Sleep</span>
+<div id="social-notif" style="position:fixed;bottom:120px;left:16px;z-index:9990;display:none;background:#fff;border-radius:12px;padding:14px 16px;box-shadow:0 4px 20px rgba(0,0,0,0.15);max-width:300px;width:calc(100% - 32px);animation:slideIn 0.4s ease;">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div style="font-size:32px;">🌙</div>
+    <div style="flex:1;">
+      <strong id="social-notif-name" style="display:block;font-size:14px;color:#0e0508;font-weight:700;">Sofía (bebé 2 meses)</strong>
+      <span id="social-notif-msg" style="display:block;font-size:13px;color:#666;">acaba de activar el Plan Básico 🎉</span>
     </div>
   </div>
 </div>
@@ -768,76 +905,134 @@ vipIntervals.forEach(function(ms) {
 
 // ---- PRUEBA SOCIAL ----
 var personas = [
-  {nombre:'María', ciudad:'Ciudad de México', plan:'Plan VIP', bebé:'gemelos'},
-  {nombre:'Daniela', ciudad:'Bogotá', plan:'Plan Básico', bebé:'bebé 4 meses'},
-  {nombre:'Valentina', ciudad:'Buenos Aires', plan:'Plan VIP', bebé:'gemelas'},
-  {nombre:'Sofía', ciudad:'Lima', plan:'Plan Básico', bebé:'bebé 2 meses'},
-  {nombre:'Camila', ciudad:'Santiago', plan:'Plan VIP', bebé:'hermanos'},
-  {nombre:'Isabela', ciudad:'Medellín', plan:'Plan Básico', bebé:'bebé 5 meses'},
-  {nombre:'Andrea', ciudad:'Guadalajara', plan:'Plan VIP', bebé:'gemelos'},
-  {nombre:'Natalia', ciudad:'Monterrey', plan:'Plan Básico', bebé:'bebé 3 meses'},
-  {nombre:'Lucía', ciudad:'Quito', plan:'Plan VIP', bebé:'hermanas'},
-  {nombre:'Gabriela', ciudad:'Caracas', plan:'Plan Básico', bebé:'bebé 6 meses'},
-  {nombre:'Carolina', ciudad:'Córdoba', plan:'Plan VIP', bebé:'gemelos'},
-  {nombre:'Fernanda', ciudad:'Cali', plan:'Plan Básico', bebé:'bebé 1 mes'},
-  {nombre:'Josefina', ciudad:'Valparaíso', plan:'Plan VIP', bebé:'hermanos'},
-  {nombre:'Mariana', ciudad:'Asunción', plan:'Plan Básico', bebé:'bebé 7 meses'},
-  {nombre:'Beatriz', ciudad:'Caracas', plan:'Plan VIP', bebé:'gemelas'},
-  {nombre:'Roxana', ciudad:'Arequipa', plan:'Plan Básico', bebé:'bebé 4 meses'},
+  {nombre:'María', bebé:'gemelos (9 meses)', plan:'Plan VIP'},
+  {nombre:'Daniela', bebé:'bebé (11 meses)', plan:'Plan Básico'},
+  {nombre:'Valentina', bebé:'gemelas (1 año)', plan:'Plan VIP'},
+  {nombre:'Sofía', bebé:'bebé (8 meses)', plan:'Plan Básico'},
+  {nombre:'Camila', bebé:'hermanos (1 año y 3 meses)', plan:'Plan VIP'},
+  {nombre:'Isabela', bebé:'bebé (6 meses)', plan:'Plan Básico'},
+  {nombre:'Andrea', bebé:'gemelos (1 año 6 meses)', plan:'Plan VIP'},
+  {nombre:'Natalia', bebé:'bebé (10 meses)', plan:'Plan Básico'},
+  {nombre:'Lucía', bebé:'hermanas (1 año y 8 meses)', plan:'Plan VIP'},
+  {nombre:'Gabriela', bebé:'bebé (1 año)', plan:'Plan Básico'},
+  {nombre:'Carolina', bebé:'gemelos (2 años)', plan:'Plan VIP'},
+  {nombre:'Fernanda', bebé:'bebé (1 año 2 meses)', plan:'Plan Básico'},
+  {nombre:'Josefina', bebé:'hermanos (2 años y 6 meses)', plan:'Plan VIP'},
+  {nombre:'Mariana', bebé:'bebé (1 año 4 meses)', plan:'Plan Básico'},
+  {nombre:'Beatriz', bebé:'gemelas (2 años y 8 meses)', plan:'Plan VIP'},
+  {nombre:'Roxana', bebé:'bebé (1 año 6 meses)', plan:'Plan Básico'},
 ];
+
 var notifIdx = 0;
 var notifStarted = false;
 
 function showNotif() {
-  var p = personas[notifIdx % personas.length];
-  notifIdx++;
-  var el = document.getElementById('social-notif');
-  var elName = document.getElementById('social-notif-name');
-  var elMsg = document.getElementById('social-notif-msg');
-  el.classList.remove('hiding');
-  elName.textContent = p.nombre + ' (' + p.bebé + ')';
-  var msgText = 'acaba de activar el ' + p.plan;
-  if (p.plan === 'Plan VIP') {
-    msgText += ' para gemelos 👯';
-  } else {
-    msgText += ' 🎉';
+  try {
+    var p = personas[notifIdx % personas.length];
+    notifIdx++;
+    var el = document.getElementById('social-notif');
+    var elName = document.getElementById('social-notif-name');
+    var elMsg = document.getElementById('social-notif-msg');
+    
+    if (!el || !elName || !elMsg) return;
+    
+    elName.textContent = p.nombre + ' (' + p.bebé + ')';
+    var msgText = 'acaba de activar el ' + p.plan;
+    if (p.plan === 'Plan VIP') {
+      msgText += ' 👯';
+    } else {
+      msgText += ' 🎉';
+    }
+    elMsg.textContent = msgText;
+    
+    el.style.display = 'block';
+    el.style.animation = 'slideIn 0.4s ease';
+    
+    setTimeout(function() {
+      el.style.animation = 'slideOut 0.4s ease forwards';
+      setTimeout(function() { el.style.display = 'none'; }, 400);
+    }, 4000);
+  } catch(e) {
+    console.log('Notif error:', e);
   }
-  elMsg.textContent = msgText;
-  el.style.display = 'block';
-  setTimeout(function() {
-    el.classList.add('hiding');
-    setTimeout(function(){ el.style.display='none'; el.classList.remove('hiding'); }, 400);
-  }, 4000);
 }
 
+var ofertaEl = document.getElementById('oferta');
 function startNotifs() {
   if (notifStarted) return;
   notifStarted = true;
-  setTimeout(showNotif, 3000);
-  setInterval(showNotif, 18000);
+  console.log('Notificaciones iniciadas');
+  showNotif();
+  setInterval(showNotif, 15000);
 }
 
-// Iniciar notifs cuando el scroll llegue a #oferta
-var ofertaEl = document.getElementById('oferta');
-if (ofertaEl && 'IntersectionObserver' in window) {
-  var obs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) { if (entry.isIntersecting) startNotifs(); });
-  }, {threshold: 0.2});
-  obs.observe(ofertaEl);
-} else {
-  setTimeout(startNotifs, 8000);
-}
+// Iniciar notifs después de 5 segundos en la página
+setTimeout(function() {
+  startNotifs();
+}, 5000);
 
 // ---- BOTÓN FLOTANTE MÓVIL ----
 var floatCta = document.getElementById('float-cta');
-if (floatCta && ofertaEl && 'IntersectionObserver' in window) {
+var ofertaSection = document.getElementById('oferta');
+if (floatCta && ofertaSection && 'IntersectionObserver' in window) {
   var floatObs = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       floatCta.style.display = entry.isIntersecting ? 'none' : 'block';
     });
   }, {threshold: 0.5});
-  floatObs.observe(ofertaEl);
+  floatObs.observe(ofertaSection);
 }
+</script>
+
+
+<!-- Event Listeners para Checkout -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Botones Plan Básico
+  var basicButtons = document.querySelectorAll('a[href="https://buy.stripe.com/bJeaEXfpk9hFghketqdnW0b"]');
+  basicButtons.forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      TrackingModule.trackInitiateCheckout('Plan Básico');
+      // No prevenir el click, dejar que vaya a Stripe
+    });
+  });
+  
+  // Botones Plan VIP
+  var vipButtons = document.querySelectorAll('a[href="https://buy.stripe.com/aFa28rdhceBZc14adadnW0c"]');
+  vipButtons.forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      TrackingModule.trackInitiateCheckout('Plan VIP');
+      // No prevenir el click, dejar que vaya a Stripe
+    });
+  });
+  
+  console.log('✓ Event listeners para checkout configurados');
+});
+</script>
+
+
+<!-- Purchase Event Detector (Stripe Success Redirect) -->
+<script>
+(function() {
+  // Detectar si viene de Stripe con parámetro success
+  var urlParams = new URLSearchParams(window.location.search);
+  var stripeSuccess = urlParams.get('success');
+  var sessionId = urlParams.get('session_id');
+  
+  if (stripeSuccess === 'true' || sessionId) {
+    // Esperar a que fbq esté listo
+    setTimeout(function() {
+      if (typeof fbq !== 'undefined' && typeof TrackingModule !== 'undefined') {
+        // Determinar cuál plan se compró (lo ideal sería desde el webhook, pero como fallback)
+        var plan = sessionId ? 'Plan Desconocido' : 'Plan Básico';
+        
+        // Disparar Purchase
+        TrackingModule.trackPurchase(plan);
+        console.log('✓ Purchase detectado desde Stripe redirect');
+      }
+    }, 500);
+  }
+})();
 </script>
 
 </body>
