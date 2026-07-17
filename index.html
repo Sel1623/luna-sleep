@@ -446,12 +446,12 @@ src="https://www.facebook.com/tr?id=1437852618376703&ev=PageView&noscript=1"
 /></noscript>
 
 <!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-401263629"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YQQLSPVQ32"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-401263629', {
+  gtag('config', 'G-YQQLSPVQ32', {
     'page_path': window.location.pathname,
     'anonymize_ip': true,
     'allow_google_signals': true,
@@ -952,22 +952,22 @@ vipIntervals.forEach(function(ms) {
 
 // ---- PRUEBA SOCIAL ----
 var personas = [
-  {nombre:'María', bebé:'gemelos (9 meses)', plan:'Plan VIP'},
-  {nombre:'Daniela', bebé:'bebé (11 meses)', plan:'Plan Básico'},
-  {nombre:'Valentina', bebé:'gemelas (1 año)', plan:'Plan VIP'},
-  {nombre:'Sofía', bebé:'bebé (8 meses)', plan:'Plan Básico'},
-  {nombre:'Camila', bebé:'hermanos (1 año y 3 meses)', plan:'Plan VIP'},
-  {nombre:'Isabela', bebé:'bebé (6 meses)', plan:'Plan Básico'},
-  {nombre:'Andrea', bebé:'gemelos (1 año 6 meses)', plan:'Plan VIP'},
-  {nombre:'Natalia', bebé:'bebé (10 meses)', plan:'Plan Básico'},
-  {nombre:'Lucía', bebé:'hermanas (1 año y 8 meses)', plan:'Plan VIP'},
-  {nombre:'Gabriela', bebé:'bebé (1 año)', plan:'Plan Básico'},
-  {nombre:'Carolina', bebé:'gemelos (2 años)', plan:'Plan VIP'},
-  {nombre:'Fernanda', bebé:'bebé (1 año 2 meses)', plan:'Plan Básico'},
-  {nombre:'Josefina', bebé:'hermanos (2 años y 6 meses)', plan:'Plan VIP'},
-  {nombre:'Mariana', bebé:'bebé (1 año 4 meses)', plan:'Plan Básico'},
-  {nombre:'Beatriz', bebé:'gemelas (2 años y 8 meses)', plan:'Plan VIP'},
-  {nombre:'Roxana', bebé:'bebé (1 año 6 meses)', plan:'Plan Básico'},
+  {nombre:'María', bebé:'gemelos 9 meses', plan:'Plan VIP'},
+  {nombre:'Daniela', bebé:'bebé 11 meses', plan:'Plan Básico'},
+  {nombre:'Valentina', bebé:'gemelas 1 año', plan:'Plan VIP'},
+  {nombre:'Sofía', bebé:'bebé 8 meses', plan:'Plan Básico'},
+  {nombre:'Camila', bebé:'hermanos 1 año 3 meses', plan:'Plan VIP'},
+  {nombre:'Isabela', bebé:'bebé 6 meses', plan:'Plan Básico'},
+  {nombre:'Andrea', bebé:'gemelos 1 año 6 meses', plan:'Plan VIP'},
+  {nombre:'Natalia', bebé:'bebé 10 meses', plan:'Plan Básico'},
+  {nombre:'Lucía', bebé:'hermanas 1 año 8 meses', plan:'Plan VIP'},
+  {nombre:'Gabriela', bebé:'bebé 1 año', plan:'Plan Básico'},
+  {nombre:'Carolina', bebé:'gemelos 2 años', plan:'Plan VIP'},
+  {nombre:'Fernanda', bebé:'bebé 1 año 2 meses', plan:'Plan Básico'},
+  {nombre:'Josefina', bebé:'hermanos 2 años 6 meses', plan:'Plan VIP'},
+  {nombre:'Mariana', bebé:'bebé 1 año 4 meses', plan:'Plan Básico'},
+  {nombre:'Beatriz', bebé:'gemelas 2 años 8 meses', plan:'Plan VIP'},
+  {nombre:'Roxana', bebé:'bebé 1 año 6 meses', plan:'Plan Básico'},
 ];
 
 var notifIdx = 0;
@@ -983,7 +983,7 @@ function showNotif() {
     
     if (!el || !elName || !elMsg) return;
     
-    elName.textContent = p.nombre + ' (' + p.bebé + ')';
+    elName.textContent = p.nombre + ' • ' + p.bebé;
     var msgText = 'acaba de activar el ' + p.plan;
     if (p.plan === 'Plan VIP') {
       msgText += ' 👯';
