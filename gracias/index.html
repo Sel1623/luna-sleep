@@ -47,12 +47,18 @@ gtag('config', 'G-YQQLSPVQ32');
   var plan = params.get('plan') === 'vip' ? 'vip' : 'basico';
   var value = plan === 'vip' ? 69.00 : 49.00;
   var name  = plan === 'vip' ? 'Plan VIP Luna Sleep' : 'Plan Básico Luna Sleep';
+  var sessionId = params.get('session_id');
   window.__lunaPlan = plan;
   var key = 'luna_purchase_' + plan;
   if (sessionStorage.getItem(key)) return;
   sessionStorage.setItem(key, '1');
   if (typeof fbq !== 'undefined') {
-    fbq('track', 'Purchase', { content_name: name, content_type: 'product', currency: 'USD', value: value });
+    var purchaseData = { content_name: name, content_type: 'product', currency: 'USD', value: value };
+    if (sessionId) {
+      fbq('track', 'Purchase', purchaseData, { eventID: sessionId });
+    } else {
+      fbq('track', 'Purchase', purchaseData);
+    }
   }
   if (typeof gtag !== 'undefined') {
     gtag('event', 'purchase', { transaction_id: 'luna-' + Date.now(), currency: 'USD', value: value,
