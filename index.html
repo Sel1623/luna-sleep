@@ -434,7 +434,7 @@ body{font-size:16.5px;line-height:1.75;letter-spacing:.005em}
           <li>Bebé Nocturno.</li>
           <li>1 perfil de bebé.</li>
         </ul>
-        <a href="https://buy.stripe.com/bJeaEXfpk9hFghketqdnW0b" class="btn-outline btn-block">Quiero Luna</a>
+        <a href="https://buy.stripe.com/fZu14na509hF0imbhednW0e" class="btn-outline btn-block">Quiero Luna</a>
       </div>
       <div class="plan popular">
         <div class="popular-tag">Más popular</div>
@@ -452,7 +452,7 @@ body{font-size:16.5px;line-height:1.75;letter-spacing:.005em}
           <li>Bitácora Luna Sleep.</li>
           <li>Bebé Nocturno.</li>
         </ul>
-        <a href="https://buy.stripe.com/aFa28rdhceBZc14adadnW0c" class="btn-gold btn-block">Quiero Luna VIP</a>
+        <a href="https://buy.stripe.com/dRmbJ11yueBZ3uy1GEdnW0f" class="btn-gold btn-block">Quiero Luna VIP</a>
       </div>
     </div>
     <p class="planes-trust">Pago 100% seguro · Acceso inmediato · Garantía de 30 días</p>
@@ -533,7 +533,7 @@ body{font-size:16.5px;line-height:1.75;letter-spacing:.005em}
       <span class="old">$524 USD</span>
       <span class="new">$69 USD</span>
     </div>
-    <a id="upsell-accept" href="https://buy.stripe.com/aFa28rdhceBZc14adadnW0c">✓ Quiero el Plan VIP por $69</a>
+    <a id="upsell-accept" href="https://buy.stripe.com/dRmbJ11yueBZ3uy1GEdnW0f">✓ Quiero el Plan VIP por $69</a>
     <button id="upsell-decline" onclick="goBasic()">No gracias, prefiero el Plan Básico por $49</button>
   </div>
 </div>
@@ -602,7 +602,7 @@ body{font-size:16.5px;line-height:1.75;letter-spacing:.005em}
 <script>
 
 // ---- UPSELL ----
-var basicBtn = document.querySelector('a[href="https://buy.stripe.com/bJeaEXfpk9hFghketqdnW0b"]');
+var basicBtn = document.querySelector('a[href="https://buy.stripe.com/fZu14na509hF0imbhednW0e"]');
 if (basicBtn) {
   basicBtn.addEventListener('click', function(e) {
     e.preventDefault();
@@ -614,7 +614,7 @@ function closeUpsell() {
 }
 function goBasic() {
   closeUpsell();
-  window.location.href = 'https://buy.stripe.com/bJeaEXfpk9hFghketqdnW0b';
+  window.location.href = 'https://buy.stripe.com/fZu14na509hF0imbhednW0e';
 }
 document.getElementById('upsell-overlay').addEventListener('click', function(e) {
   if (e.target === this) closeUpsell();
