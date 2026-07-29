@@ -96,6 +96,22 @@ body{font-size:16.5px;line-height:1.75;letter-spacing:.005em}
 .hero-inner{padding-bottom:6px}
 .hero-inner-bottom{padding-top:16px;padding-bottom:24px}
 .hero-photo-mid{margin-top:4px}
+@media(max-width:600px){
+.compare-outer{overflow-x:visible;border:none;box-shadow:none;border-radius:0;margin-top:22px}
+.compare-table{min-width:0;width:100%;display:block}
+.compare-table thead{display:none}
+.compare-table tbody{display:block}
+.compare-table tbody tr,.compare-table tbody tr:nth-child(odd),.compare-table tbody tr:nth-child(even){display:block;background:var(--night-2);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px 17px;margin-bottom:11px}
+.compare-table td{display:block;padding:0;font-size:14px;line-height:1.45}
+.compare-table td:nth-child(1){color:var(--white);font-weight:700;font-size:15px;margin-bottom:11px}
+.compare-table td:nth-child(2),.compare-table td:nth-child(3){display:flex;align-items:flex-start;gap:10px;padding-top:9px}
+.compare-table td:nth-child(2){color:var(--muted)}
+.compare-table td:nth-child(3){border-top:1px solid var(--night-4);margin-top:9px;padding-top:11px}
+.compare-table td:nth-child(2)::before,.compare-table td:nth-child(3)::before{content:attr(data-col);flex:0 0 78px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding-top:3px}
+.compare-table td:nth-child(3)::before{color:var(--gold)}
+.compare-table td .c-no,.compare-table td .c-yes{flex:1;align-items:flex-start}
+.compare-table td .c-no::before,.compare-table td .c-yes::before{padding-top:1px}
+}
 </style>
 </head>
 <body>
@@ -192,33 +208,33 @@ body{font-size:16.5px;line-height:1.75;letter-spacing:.005em}
         <tbody>
           <tr>
             <td>Las Pistas Invisibles de tu bebé</td>
-            <td><span class="c-no">Igual para todos</span></td>
-            <td><span class="c-yes">Lee su expediente y sus patrones</span></td>
+            <td data-col="Guía PDF"><span class="c-no">Igual para todos</span></td>
+            <td data-col="Luna"><span class="c-yes">Lee su expediente y sus patrones</span></td>
           </tr>
           <tr>
             <td>Disponibilidad</td>
-            <td><span class="c-no">Te deja leyendo sola</span></td>
-            <td><span class="c-yes">Responde de inmediato, día y noche</span></td>
+            <td data-col="Guía PDF"><span class="c-no">Te deja leyendo sola</span></td>
+            <td data-col="Luna"><span class="c-yes">Responde de inmediato, día y noche</span></td>
           </tr>
           <tr>
             <td>Plan de acción</td>
-            <td><span class="c-no">Tú lo tienes que interpretar</span></td>
-            <td><span class="c-yes">Qué hacer para que realmente duerma</span></td>
+            <td data-col="Guía PDF"><span class="c-no">Tú lo tienes que interpretar</span></td>
+            <td data-col="Luna"><span class="c-yes">Qué hacer para que realmente duerma</span></td>
           </tr>
           <tr>
             <td>Aprende con el tiempo</td>
-            <td><span class="c-no">Siempre el mismo PDF</span></td>
-            <td><span class="c-yes">Ajusta el plan con lo que pasó anoche</span></td>
+            <td data-col="Guía PDF"><span class="c-no">Siempre el mismo PDF</span></td>
+            <td data-col="Luna"><span class="c-yes">Ajusta el plan con lo que pasó anoche</span></td>
           </tr>
           <tr>
             <td>Señales médicas</td>
-            <td><span class="c-no">No distingue</span></td>
-            <td><span class="c-yes">Te dice cuándo ir al pediatra</span></td>
+            <td data-col="Guía PDF"><span class="c-no">No distingue</span></td>
+            <td data-col="Luna"><span class="c-yes">Te dice cuándo ir al pediatra</span></td>
           </tr>
           <tr>
             <td>Duración real</td>
-            <td><span class="c-no">La lees una vez</span></td>
-            <td><span class="c-yes">365 noches de acompañamiento</span></td>
+            <td data-col="Guía PDF"><span class="c-no">La lees una vez</span></td>
+            <td data-col="Luna"><span class="c-yes">365 noches de acompañamiento</span></td>
           </tr>
         </tbody>
       </table>
