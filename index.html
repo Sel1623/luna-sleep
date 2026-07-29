@@ -96,6 +96,13 @@ body{font-size:16.5px;line-height:1.75;letter-spacing:.005em}
 .hero-inner{padding-bottom:6px}
 .hero-inner-bottom{padding-top:16px;padding-bottom:24px}
 .hero-photo-mid{margin-top:4px}
+.value-sub{display:block;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin:38px 0 0}
+.value-sub:first-of-type{margin-top:30px}
+.value-sub+.value-table{margin-top:12px}
+.value-table tr.luna-row td{background:rgba(214,179,106,.11);color:var(--white);font-weight:700;font-size:15px}
+.value-table tr.luna-row td:last-child{color:var(--gold);font-weight:800}
+.value-table td:last-child{white-space:nowrap}
+@media(max-width:600px){.value-table td{padding:12px 14px;font-size:13.5px}.value-table tr.total td,.value-table tr.luna-row td{font-size:14.5px}}
 @media(max-width:600px){
 .compare-outer{overflow-x:visible;border:none;box-shadow:none;border-radius:0;margin-top:22px}
 .compare-table{min-width:0;width:100%;display:block}
@@ -413,6 +420,7 @@ body{font-size:16.5px;line-height:1.75;letter-spacing:.005em}
   <div class="wrap">
     <span class="label">Tu inversión</span>
     <h2 class="h2">Ponlo en perspectiva</h2>
+    <span class="value-sub">Lo que recibes</span>
     <table class="value-table">
       <tr><td>Luna App acceso anual (24/7)</td><td>$49 USD</td></tr>
       <tr><td>Plan Personalizado de Sueño</td><td>$299 USD</td></tr>
@@ -421,7 +429,15 @@ body{font-size:16.5px;line-height:1.75;letter-spacing:.005em}
       <tr><td>Bitácora Luna Sleep</td><td>$29 USD</td></tr>
       <tr class="total"><td>Valor total</td><td>$475 USD</td></tr>
     </table>
-    <div class="value-note">Una guía cuesta $10 y no responde, una hora de asesora cuesta $150-400 y luego desaparece, Luna cuesta $49 por 365 noches: <strong>$0.13 por noche por no volver a estar sola de madrugada</strong>.</div>
+
+    <span class="value-sub">Lo que cuesta resolverlo por otro camino</span>
+    <table class="value-table">
+      <tr><td>Asesora de sueño, paquete completo</td><td>$300–500 USD</td></tr>
+      <tr><td>Consulta con especialista en sueño infantil</td><td>$100–200 USD</td></tr>
+      <tr><td>Las guías y cursos que ya compraste</td><td>$30–80 USD</td></tr>
+      <tr class="luna-row"><td>Luna, 365 noches acompañada</td><td>$49 USD</td></tr>
+    </table>
+    <div class="value-note">La asesora se va cuando terminan sus sesiones y la guía nunca respondió a las 2 a.m. Luna se queda las 365 noches: <strong>$0.13 por noche por no volver a estar sola de madrugada</strong>.</div>
   </div>
 </section>
 
